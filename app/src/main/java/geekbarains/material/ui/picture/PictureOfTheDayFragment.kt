@@ -15,7 +15,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import geekbarains.material.R
 import geekbarains.material.ui.MainActivity
-import geekbarains.material.ui.chips.ChipsFragment
+import geekbarains.material.ui.settings.SettingsFragment
 import kotlinx.android.synthetic.main.main_fragment.*
 
 class PictureOfTheDayFragment : Fragment() {
@@ -46,6 +46,14 @@ class PictureOfTheDayFragment : Fragment() {
                 data = Uri.parse("https://en.wikipedia.org/wiki/${input_edit_text.text.toString()}")
             })
         }
+        button_default_theme.setOnClickListener {
+            context?.theme?.applyStyle(R.style.AppTheme_Default, true)
+            fragmentManager?.beginTransaction()?.detach(this)?.attach(this)?.commit()
+        }
+        button_sunset_theme.setOnClickListener {
+            context?.theme?.applyStyle(R.style.AppTheme_Sunset, true)
+            fragmentManager?.beginTransaction()?.detach(this)?.attach(this)?.commit()
+        }
         setBottomAppBar(view)
     }
 
@@ -57,7 +65,7 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_fav -> toast("Favourite")
-            R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.add(R.id.container, ChipsFragment())?.addToBackStack(null)?.commit()
+            R.id.app_bar_settings -> activity?.supportFragmentManager?.beginTransaction()?.add(R.id.container, SettingsFragment())?.addToBackStack(null)?.commit()
             android.R.id.home -> {
                 activity?.let {
                     BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
