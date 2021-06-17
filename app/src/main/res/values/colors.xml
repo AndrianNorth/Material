@@ -8,4 +8,5 @@
     <color name="themeColorSecondary">#FFC107</color>
     <color name="themeStatusBarColor">#FF5722</color>
     <color name="themeBottomAppBarColor">#FF5722</color>
+    <color name="colorAccent40Alfa">#662962FF</color>
 </resources>
